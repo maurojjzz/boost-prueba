@@ -5,3 +5,11 @@
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'Unison-Pro-Light';
+    src: url(./unison/Unison_Pro_Light.otf)
+    format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
