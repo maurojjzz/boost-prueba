@@ -39,7 +39,7 @@ const Header = () => {
         <Box
           sx={{
             color: theme.palette.primary.main,
-            fontFamily: "Roboto",
+            fontFamily: "Helvetica",
             textShadow: "2px 2px 4px rgba(0, 0, 0, 1)",
             mt: "10px",
           }}
@@ -50,9 +50,10 @@ const Header = () => {
               display: "flex",
               justifyContent: "flex-end",
               gap: "5px",
-              padding: 0,
               margin: 0,
-              fontWeight: "400",
+              paddingRight: "2px",
+              fontWeight: "600",
+
             }}
           >
             <li>
