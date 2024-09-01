@@ -1,6 +1,7 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import WelcomeSection from "../welcomeSection/WelcomeSection.jsx";
 import Navbar from "../navbar/Navbar.jsx";
+import ServicesSection from "../servicesSection/ServicesSection.jsx";
 
 const Layout = () => {
   return (
@@ -16,17 +17,9 @@ const Layout = () => {
       
       <Navbar />
 
-      <Box
-        sx={{
-          width: "100%",
-          height: "200vh",
-        }}
-        id={"services"}
-      >
-        <Typography variant="body1" color="initial">
-          other section
-        </Typography>
-      </Box>
+      <ServicesSection />
+
+      
     </Box>
   );
 };

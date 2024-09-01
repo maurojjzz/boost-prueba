@@ -13,3 +13,12 @@
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'HelveticaNowDisplay';
+    src: url(./helvetica/HelveticaNowDisplay-Light.ttf)
+    format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+

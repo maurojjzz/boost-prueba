@@ -14,13 +14,13 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: [
-        'Roboto', 
-        'Unison-Pro-Bold',
-        'Helvetica', 
-        'Arial', 
-        'sans-serif',
-    ] 
-    
+      "HelveticaNowDisplay",
+      "Unison-Pro-Bold",
+      "Unison-Pro-Light",
+      "Roboto",
+      "Arial",
+      "sans-serif",
+    ],
   },
 });
 

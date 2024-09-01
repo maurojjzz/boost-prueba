@@ -26,7 +26,6 @@ const Navbar = () => {
         alignItems: "center",
         justifyContent: "space-between",
         backgroundColor: theme.palette.black.main,
-        opacity: 0.3,
         zIndex: 1000,
       }}
     >

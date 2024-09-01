@@ -39,7 +39,7 @@ const Header = () => {
         <Box
           sx={{
             color: theme.palette.primary.main,
-            fontFamily: "Helvetica",
+            fontFamily: "HelveticaNowDisplay",
             textShadow: "2px 2px 4px rgba(0, 0, 0, 1)",
             mt: "10px",
           }}
