@@ -8,7 +8,7 @@ const CardComponent = ({title, img, imgAlt, text}) => {
       sx={{
         maxWidth: 345,
         borderRadius: "0px",
-        mb: "120px",
+        mb: "50px",
         boxShadow: "none",
         border: `1px solid #b3b3b2`,
       }}
