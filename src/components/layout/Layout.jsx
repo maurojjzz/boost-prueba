@@ -4,6 +4,8 @@ import Navbar from "../navbar/Navbar.jsx";
 import ServicesSection from "../servicesSection/ServicesSection.jsx";
 import ImageBreakout from "./imageBreakout/ImageBreakout.jsx";
 import Contact from "../contact/Contact.jsx";
+import Map from "../map/Map.jsx";
+import Footer from "../footer/Footer.jsx";
 
 const Layout = () => {
   return (
@@ -25,6 +27,9 @@ const Layout = () => {
 
       <Contact />
 
+      <Map />
+
+      <Footer />
       
     </Box>
   );
