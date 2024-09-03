@@ -3,6 +3,7 @@ import WelcomeSection from "../welcomeSection/WelcomeSection.jsx";
 import Navbar from "../navbar/Navbar.jsx";
 import ServicesSection from "../servicesSection/ServicesSection.jsx";
 import ImageBreakout from "./imageBreakout/ImageBreakout.jsx";
+import Contact from "../contact/Contact.jsx";
 
 const Layout = () => {
   return (
@@ -21,6 +22,8 @@ const Layout = () => {
       <ServicesSection />
 
       <ImageBreakout />
+
+      <Contact />
 
       
     </Box>
