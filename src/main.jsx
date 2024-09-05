@@ -1,7 +1,8 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { ThemeProvider, CssBaseline } from "@mui/material";
-import './theme/fonts/font.css'
+import { BrowserRouter as Router } from "react-router-dom";
+import "./theme/fonts/font.css";
 import Layout from "./components/layout/Layout.jsx";
 
 import "@fontsource/roboto/300.css";
@@ -14,7 +15,9 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Layout />
+      <Router>
+        <Layout />
+      </Router>
     </ThemeProvider>
   </StrictMode>
 );

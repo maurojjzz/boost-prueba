@@ -27,6 +27,7 @@ const Navbar = () => {
         justifyContent: "space-between",
         backgroundColor: theme.palette.black.main,
         zIndex: 1000,
+        flexShrink: 0,
       }}
     >
       <Typography
