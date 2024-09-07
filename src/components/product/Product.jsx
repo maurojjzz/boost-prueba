@@ -207,6 +207,7 @@ const Product = () => {
         {filteredAndSortedProducts.map((product) => (
           <CarProduct
             key={product.id}
+            id={product.id}
             model={product.model}
             desc={product.description}
             img={product.image}
