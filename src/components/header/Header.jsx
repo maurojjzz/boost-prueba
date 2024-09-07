@@ -58,20 +58,6 @@ const Header = () => {
           >
             <li>
               <Link
-                href="#home"
-                sx={{
-                  color: "inherit",
-                  textDecoration: "none",
-                  "&:hover": {
-                    textDecoration: "underline",
-                  },
-                }}
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
                 href="#services"
                 sx={{
                   color: "inherit",
@@ -81,7 +67,21 @@ const Header = () => {
                   },
                 }}
               >
-                Services
+                Servicios
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/products"
+                sx={{
+                  color: "inherit",
+                  textDecoration: "none",
+                  "&:hover": {
+                    textDecoration: "underline",
+                  },
+                }}
+              >
+                Catalogo
               </Link>
             </li>
             <li>
@@ -95,7 +95,7 @@ const Header = () => {
                   },
                 }}
               >
-                Contact
+                Contacto
               </Link>
             </li>
           </ul>
