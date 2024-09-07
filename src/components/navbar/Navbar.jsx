@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Box, Typography, useTheme } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import DrawerComponent from "../drawer/Drawer.jsx";
@@ -6,6 +7,9 @@ import DrawerComponent from "../drawer/Drawer.jsx";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
+
+  const navigate = useNavigate();
+
 
   const toggleDrawer = (open) => (event) => {
     if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
@@ -43,18 +47,21 @@ const Navbar = () => {
           alignItems: "center",
           ml: "10px",
         }}
+        onClick={()=>{
+          navigate("/")
+        }}
       >
         Boost Car
       </Typography>
-       <MenuIcon 
+      <MenuIcon
         sx={{
           color: theme.palette.primary.main,
           cursor: "pointer",
           mr: "10px",
         }}
-        onClick={toggleDrawer(true)} 
+        onClick={toggleDrawer(true)}
       />
-      <DrawerComponent open={open} toggleDrawer={toggleDrawer} />  
+      <DrawerComponent open={open} toggleDrawer={toggleDrawer} />
     </Box>
   );
 };
