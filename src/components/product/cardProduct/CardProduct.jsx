@@ -1,9 +1,24 @@
 import { Card, CardContent, CardMedia, Typography, useTheme, Chip, CardActions } from "@mui/material";
 import ButtonProduct from "./buttonProduct/ButtonProduct.jsx";
-const CardProduct = ({ model, color, img, imgAlt, usage, desc, price, year, brand }) => {
+import { useNavigate, useLocation } from "react-router-dom";
+
+const CardProduct = ({ id, model, color, img, imgAlt, usage, desc, price, year, brand }) => {
   const theme = useTheme();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleProductClick = () => {
+    navigate(`/products/${id}`, {
+      state: {
+        backgroundLocation: location,
+        product: { id, model, color, img, imgAlt, usage, desc, price, year, brand },
+      },
+    });
+  };
+
   return (
     <Card
+      onClick={() => handleProductClick()}
       sx={{
         maxWidth: { xs: "350px", md: "1200px" },
         width: { xs: "90%", md: "90%" },
@@ -117,7 +132,7 @@ const CardProduct = ({ model, color, img, imgAlt, usage, desc, price, year, bran
             fontSize: "18px",
           }}
         >
-          ${price}
+          $ {price.toLocaleString()}
         </Typography>
 
         <CardActions
