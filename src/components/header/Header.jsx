@@ -1,7 +1,10 @@
-import { Box, Typography, useTheme, Link } from "@mui/material";
+import { Box, List, ListItem, Typography, useTheme } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const theme = useTheme();
+
+  
   return (
     <Box
       sx={{
@@ -44,8 +47,8 @@ const Header = () => {
             mt: "10px",
           }}
         >
-          <ul
-            style={{
+          <List
+            sx={{
               listStyle: "none",
               display: "flex",
               justifyContent: "flex-end",
@@ -53,52 +56,65 @@ const Header = () => {
               margin: 0,
               paddingRight: "2px",
               fontWeight: "600",
-
             }}
           >
-            <li>
-              <Link
-                href="#services"
+            <Link
+              to="/#services"
+            >
+              <ListItem
                 sx={{
-                  color: "inherit",
+                  color: theme.palette.primary.main,
+                  p:0,
                   textDecoration: "none",
                   "&:hover": {
                     textDecoration: "underline",
                   },
+                  textShadow: "2px 2px 4px rgba(0, 0, 0, 0.8)",
+
                 }}
               >
                 Servicios
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/products"
+              </ListItem>
+            </Link>
+
+            <Link
+              to="/products"
+            >
+              <ListItem
                 sx={{
-                  color: "inherit",
+                  color: theme.palette.primary.main,
                   textDecoration: "none",
+                  p:0,
                   "&:hover": {
                     textDecoration: "underline",
                   },
                 }}
               >
                 Catalogo
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#contact"
+              </ListItem>
+            </Link>
+
+            <Link
+              to="/#contact"
+            >
+              <ListItem
                 sx={{
-                  color: "inherit",
+                  color: theme.palette.primary.main,
                   textDecoration: "none",
+                  p:0,
                   "&:hover": {
                     textDecoration: "underline",
                   },
                 }}
               >
                 Contacto
-              </Link>
-            </li>
-          </ul>
+              </ListItem>
+            </Link>
+
+
+
+           
+          </List>
         </Box>
       </Box>
     </Box>

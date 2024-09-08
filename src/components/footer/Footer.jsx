@@ -1,8 +1,23 @@
-import { Box, Typography, Link, IconButton, useTheme } from "@mui/material";
+import { Box, Typography, IconButton, useTheme } from "@mui/material";
 import { Facebook, Instagram, Twitter, LinkedIn } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const theme = useTheme();
+
+  const styleLink = {
+    fontFamily: "HelveticaNowDisplay",
+    cursor: "pointer",
+    color: theme.palette.primary.main,
+    lineHeight: 1.8,
+    mb: 1,
+    fontWeight: "bold",
+    letterSpacing: 1.5,
+    "&:hover": {
+      textDecoration: "underline",
+    },
+  };
+
   return (
     <Box
       sx={{
@@ -12,16 +27,16 @@ const Footer = () => {
         mt: "100px",
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
-        justifyContent: { xs: "center", md: "space-between" }, 
-        alignItems: { xs: "center", md: "flex-start" }, 
-        textAlign: { xs: "center", md: "left" }, 
-        flexWrap: "wrap",  
+        justifyContent: { xs: "center", md: "space-between" },
+        alignItems: { xs: "center", md: "flex-start" },
+        textAlign: { xs: "center", md: "left" },
+        flexWrap: "wrap",
       }}
     >
       <Box
         sx={{
           mb: { xs: 3, md: 0 },
-          flex: 1, 
+          flex: 1,
         }}
       >
         <Typography
@@ -55,86 +70,55 @@ const Footer = () => {
       <Box
         sx={{
           mb: { xs: 3, md: 0 },
-          flex: 1,  
+          flex: 1,
         }}
       >
-        <Typography
-          variant="h6"
-          sx={{ mb: 2 }}
-        >
+        <Typography variant="h6" sx={{ mb: 2 }}>
           Navegación
         </Typography>
         <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <Link
-            href="#home"
-            color="inherit"
-            underline="hover"
-            sx={{ mb: 1 }}
-          >
-            Inicio
+          <Link to="/#home">
+            <Typography variant={"body1"} sx={styleLink}>
+              Inicio
+            </Typography>
           </Link>
-          <Link
-            href="#catalogo"
-            color="inherit"
-            underline="hover"
-            sx={{ mb: 1 }}
-          >
-            Catálogo
+          <Link to="/products">
+            <Typography variant={"body1"} sx={styleLink}>
+              Catalogo
+            </Typography>
           </Link>
-          <Link
-            href="#servicios"
-            color="inherit"
-            underline="hover"
-            sx={{ mb: 1 }}
-          >
-            Servicios
+          <Link to="/#services">
+            <Typography variant={"body1"} sx={styleLink}>
+              Servicios
+            </Typography>
           </Link>
-          <Link
-            href="#contact"
-            color="inherit"
-            underline="hover"
-            sx={{ mb: 1 }}
-          >
-            Contacto
+          <Link to="/#contact">
+            <Typography variant={"body1"} sx={styleLink}>
+              Contacto
+            </Typography>
           </Link>
         </Box>
       </Box>
 
       <Box
         sx={{
-          flex: 1,  
+          flex: 1,
         }}
       >
         <Typography variant="h6" sx={{ mb: 2 }}>
           Síguenos
         </Typography>
         <Box>
-          <IconButton
-            href="https://facebook.com"
-            target="_blank"
-            sx={{ color: "#fff" }}
-          >
+          <IconButton href="https://facebook.com" target="_blank" sx={{ color: "#fff" }}>
             <Facebook />
           </IconButton>
-          <IconButton
-            href="https://instagram.com"
-            target="_blank"
-            sx={{ color: "#fff" }}
-          >
+          <IconButton href="https://instagram.com" target="_blank" sx={{ color: "#fff" }}>
             <Instagram />
           </IconButton>
-          <IconButton
-            href="https://twitter.com"
-            target="_blank"
-            sx={{ color: "#fff" }}
-          >
+          <IconButton href="https://twitter.com" target="_blank" sx={{ color: "#fff" }}>
             <Twitter />
           </IconButton>
-          <IconButton
-            href="https://linkedin.com"
-            target="_blank"
-            sx={{ color: "#fff" }}
-          >
+          <IconButton href="https://linkedin.com" target="_blank" sx={{ color: "#fff" }}>
             <LinkedIn />
           </IconButton>
         </Box>
