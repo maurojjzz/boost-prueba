@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Box } from "@mui/material";
 import WelcomeSection from "../welcomeSection/WelcomeSection.jsx";
@@ -8,9 +8,11 @@ import ImageBreakout from "./imageBreakout/ImageBreakout.jsx";
 import Contact from "../contact/Contact.jsx";
 import Map from "../map/Map.jsx";
 import Footer from "../footer/Footer.jsx";
+import {Loader} from "../shared"; 
 
 const Layout = () => {
   const location = useLocation();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (location.hash) {
@@ -20,7 +22,15 @@ const Layout = () => {
       }
     }
   }, [location]);
-  
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2500); 
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <Box
       sx={{
@@ -30,8 +40,10 @@ const Layout = () => {
         overflowX: "hidden",
       }}
     >
+      {loading && <Loader />}
+      
       <WelcomeSection />
-
+      
       <Navbar />
 
       <ServicesSection />
@@ -43,6 +55,7 @@ const Layout = () => {
       <Map />
 
       <Footer />
+
     </Box>
   );
 };
