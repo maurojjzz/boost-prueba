@@ -1,7 +1,15 @@
-import { Box, Typography } from "@mui/material";
-import WelcomeSection from "../welcomeSection/WelcomeSection.jsx";
+import { Box } from "@mui/material";
+import { Routes, Route, useLocation } from "react-router-dom";
+import Navbar from "../navbar/Navbar.jsx";
+import Home from "../home/Home.jsx";
+import Product from "../product/Product.jsx";
+import ProductDetailModal from "../product/detailProduct/DetailProduct";
 
 const Layout = () => {
+  const location = useLocation();
+
+  const backgroundLocation = location.state?.backgroundLocation;
+
   return (
     <Box
       sx={{
@@ -9,19 +17,29 @@ const Layout = () => {
         height: "100vh",
         position: "relative",
         overflowX: "hidden",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
-      <WelcomeSection />
-
+      {location.pathname !== "/" && <Navbar />}
       <Box
         sx={{
-          width: "100%",
-          height: "100px",
+          flexGrow: 1,
+          display: "flex",
+          flexDirection: "column",
         }}
       >
-        <Typography variant="body1" color="initial">pther section</Typography>
-      </Box>
+        <Routes location={backgroundLocation || location}>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Product />} />
+        </Routes>
 
+        {backgroundLocation && (
+          <Routes>
+            <Route path="/products/:id" element={<ProductDetailModal />} />
+          </Routes>
+        )}
+      </Box>
     </Box>
   );
 };
