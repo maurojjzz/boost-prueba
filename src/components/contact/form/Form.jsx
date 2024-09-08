@@ -2,9 +2,16 @@ import { Box, TextField, useTheme } from "@mui/material";
 import { ButtonSend } from "../../shared";
 const Form = () => {
   const theme = useTheme();
+
+  const handleSubmit = (event) => {
+    event.preventDefault(); 
+    alert("Consulta enviada!");
+  };
+
   return (
     <Box
       component={"form"}
+      onSubmit={handleSubmit}
       sx={{
         "& .MuiInputLabel-root.Mui-focused": {
           color: theme.palette.black.main,
@@ -23,6 +30,7 @@ const Form = () => {
         label="Email"
         variant="outlined"
         type="email"
+        required
         sx={{
           mt: "20px",
           borderRadius: "0px",
@@ -33,6 +41,7 @@ const Form = () => {
         label="Mensaje"
         variant="outlined"
         multiline
+        required
         rows={6}
         fullWidth
         sx={{
@@ -47,7 +56,7 @@ const Form = () => {
           },
         }}
       >
-        <ButtonSend />
+        <ButtonSend type="submit" />
       </Box>
     </Box>
   );
