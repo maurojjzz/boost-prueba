@@ -1,7 +1,7 @@
 import {  Button, useTheme } from "@mui/material";
 import { styled } from '@mui/material/styles';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-const ButtonSend = () => {
+const ButtonSend = ({type}) => {
   const theme = useTheme();
 
   const StyledArrowForwardIcon = styled(ArrowForwardIcon)({
@@ -11,6 +11,7 @@ const ButtonSend = () => {
   return (
     <Button
       variant="contained"
+      type={type}
       sx={{
         display: "flex",
         width: "300px",
