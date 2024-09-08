@@ -4,6 +4,7 @@ import Header from "../header/Header.jsx";
 const WelcomeSection = () => {
   return (
     <Box
+      id={"home"}
       sx={{
         width: "100%",
         height: "100%",

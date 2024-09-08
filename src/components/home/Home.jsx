@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Box } from "@mui/material";
 import WelcomeSection from "../welcomeSection/WelcomeSection.jsx";
 import Navbar from "../navbar/Navbar.jsx";
@@ -8,17 +10,28 @@ import Map from "../map/Map.jsx";
 import Footer from "../footer/Footer.jsx";
 
 const Layout = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.querySelector(location.hash);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
+  
   return (
     <Box
       sx={{
         width: "100vw",
-        height: "100vh", 
+        height: "100vh",
         position: "relative",
         overflowX: "hidden",
       }}
     >
       <WelcomeSection />
-      
+
       <Navbar />
 
       <ServicesSection />
@@ -30,8 +43,6 @@ const Layout = () => {
       <Map />
 
       <Footer />
-
-      
     </Box>
   );
 };
