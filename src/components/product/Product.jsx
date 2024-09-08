@@ -12,10 +12,13 @@ import {
   useTheme,
 } from "@mui/material";
 import CarProduct from "./cardProduct/CardProduct.jsx";
+import { Loader } from "../shared";
 
 const Product = () => {
   const [products, setProducts] = useState([]);
   const [marcas, setMarcas] = useState([]);
+  const [loadingCars, setLoadingCars] = useState(true); 
+  const [loadingBrands, setLoadingBrands] = useState(true); 
 
   const [selectedBrand, setSelectedBrand] = useState("");
   const [showUsed, setShowUsed] = useState(false);
@@ -28,19 +31,25 @@ const Product = () => {
 
   const getCars = async () => {
     try {
+      setLoadingCars(true);
       const response = await cars.get();
       setProducts(response);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoadingCars(false);
     }
   };
 
   const getBrands = async () => {
     try {
+      setLoadingBrands(true);
       const response = await brands.get();
       setMarcas(response);
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoadingBrands(false);
     }
   };
 
@@ -77,6 +86,8 @@ const Product = () => {
       }
     });
 
+  const isLoading = loadingCars || loadingBrands;
+
   return (
     <Box
       sx={{
@@ -87,139 +98,149 @@ const Product = () => {
         justifyContent: "center",
       }}
     >
-      <Typography
-        variant="h3"
-        sx={{
-          alignSelf: "flex-start",
-          fontFamily: "HelveticaNowDisplay",
-          maxWidth: "900px",
-          width: { sm: "75%" },
-          textAlign: "start",
-          ml: "15px",
-          my: "50px",
-          fontSize: {
-            xs: "55px",
-            sm: "80px",
-          },
-        }}
-      >
-        Nuestro catalogo de vehiculos
-      </Typography>
-
-      <Box
-        sx={{
-          mb: 2,
-          display: "flex",
-          flexDirection: { xs: "column", md: "row" },
-          maxWidth: "900px",
-          justifyContent: "space-between",
-          width: "90%",
-          p: "15px",
-          borderRadius: "5px",
-          gap: "10px",
-        }}
-      >
-        <FormControl
-          sx={{
-            backgroundColor: theme.palette.primary.main,
-          }}
-        >
-          <InputLabel
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <Typography
+            variant="h3"
             sx={{
-              color: theme.palette.black.main,
+              alignSelf: "flex-start",
               fontFamily: "HelveticaNowDisplay",
-              fontSize: "18px",
-              letterSpacing: "1px",
-              "&.Mui-focused": {
-                color: theme.palette.black.main,
-                backgroundColor: theme.palette.primary.main,
+              maxWidth: "900px",
+              width: { sm: "75%" },
+              textAlign: "start",
+              ml: "15px",
+              my: "50px",
+              fontSize: {
+                xs: "55px",
+                sm: "80px",
               },
             }}
           >
-            Marca
-          </InputLabel>
-          <Select
-            value={selectedBrand}
-            onChange={handleBrandChange}
-            label="Marca"
+            Nuestro catalogo de vehiculos
+          </Typography>
+
+          <Box
             sx={{
-              "&.Mui-focused": {
-                border: "1px solid #c3c4c3",
-              },
-              outline: "none",
+              mb: 2,
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              maxWidth: "900px",
+              justifyContent: "space-between",
+              width: "90%",
+              p: "15px",
+              borderRadius: "5px",
+              gap: "10px",
             }}
           >
-            <MenuItem value="">
-              <em>Todas las marcas</em>
-            </MenuItem>
-            {marcas.map((marca) => (
-              <MenuItem key={marca.id} value={marca.id}>
-                {marca.name}
-              </MenuItem>
+            <FormControl
+              sx={{
+                backgroundColor: theme.palette.primary.main,
+                width: {
+                  xs: "100%",
+                  md: "30%",
+                },
+              }}
+            >
+              <InputLabel
+                sx={{
+                  color: theme.palette.black.main,
+                  fontFamily: "HelveticaNowDisplay",
+                  fontSize: "18px",
+                  letterSpacing: "1px",
+                  "&.Mui-focused": {
+                    color: theme.palette.black.main,
+                    backgroundColor: theme.palette.primary.main,
+                  },
+                }}
+              >
+                Marca
+              </InputLabel>
+              <Select
+                value={selectedBrand}
+                onChange={handleBrandChange}
+                label="Marca"
+                sx={{
+                  "&.Mui-focused": {
+                    border: "1px solid #c3c4c3",
+                  },
+                  outline: "none",
+                }}
+              >
+                <MenuItem value="">
+                  <em>Todas las marcas</em>
+                </MenuItem>
+                {marcas.map((marca) => (
+                  <MenuItem key={marca.id} value={marca.id}>
+                    {marca.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <FormControlLabel
+              sx={{
+                "& .MuiCheckbox-root.Mui-checked": {
+                  color: "green",
+                },
+              }}
+              control={<Checkbox checked={showUsed} onChange={handleUsageChange} />}
+              label="Mostrar solo autos usados"
+            />
+
+            <FormControl
+              sx={{
+                backgroundColor: theme.palette.primary.main,
+              }}
+            >
+              <InputLabel
+                sx={{
+                  color: theme.palette.black.main,
+                  fontFamily: "HelveticaNowDisplay",
+                  fontSize: "18px",
+                  "&.Mui-focused": {
+                    color: theme.palette.black.main,
+                    backgroundColor: theme.palette.primary.main,
+                  },
+                }}
+              >
+                Ordenar por Precio
+              </InputLabel>
+              <Select value={sortOrder} onChange={handleSortChange} label="Ordenar por Precio">
+                <MenuItem value="asc">De menor a mayor</MenuItem>
+                <MenuItem value="desc">De mayor a menor</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "20px",
+              justifyContent: "space-around",
+            }}
+          >
+            {filteredAndSortedProducts.map((product) => (
+              <CarProduct
+                key={product.id}
+                id={product.id}
+                model={product.model}
+                desc={product.description}
+                img={product.image}
+                imgAlt={`vehículo ${product.model}`}
+                usage={product.usage}
+                color={product.color}
+                price={product.price}
+                year={product.year}
+                brand={marcas.find((brand) => brand.id === product.brandId)?.name}
+              />
             ))}
-          </Select>
-        </FormControl>
-
-        <FormControlLabel
-          sx={{
-            "& .MuiCheckbox-root.Mui-checked": {
-              color: "green",
-            },
-          }}
-          control={<Checkbox checked={showUsed} onChange={handleUsageChange} />}
-          label="Mostrar solo autos usados"
-        />
-
-        <FormControl
-          sx={{
-            backgroundColor: theme.palette.primary.main,
-          }}
-        >
-          <InputLabel
-            sx={{
-              color: theme.palette.black.main,
-              fontFamily: "HelveticaNowDisplay",
-              fontSize: "18px",
-              "&.Mui-focused": {
-                color: theme.palette.black.main,
-                backgroundColor: theme.palette.primary.main,
-              },
-            }}
-          >
-            Ordenar por Precio
-          </InputLabel>
-          <Select value={sortOrder} onChange={handleSortChange} label="Ordenar por Precio">
-            <MenuItem value="asc">De menor a mayor</MenuItem>
-            <MenuItem value="desc">De mayor a menor</MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
-
-      <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "20px",
-          justifyContent: "space-around",
-        }}
-      >
-        {filteredAndSortedProducts.map((product) => (
-          <CarProduct
-            key={product.id}
-            id={product.id}
-            model={product.model}
-            desc={product.description}
-            img={product.image}
-            imgAlt={`vehículo ${product.model}`}
-            usage={product.usage}
-            color={product.color}
-            price={product.price}
-            year={product.year}
-            brand={marcas.find((brand) => brand.id === product.brandId)?.name}
-          />
-        ))}
-      </Box>
+          </Box>
+        </>
+      )}
     </Box>
   );
 };
